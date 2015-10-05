@@ -10,8 +10,11 @@ public class LeapFly : MonoBehaviour {
   void Start () {
     m_leapController = new Controller();
     if (transform.parent == null) {
-      Debug.LogError("LeapFly must have a parent object to control"); 
-    }
+			Debug.LogError ("LeapFly must have a parent object to control"); 
+		} 
+	else {
+			Debug.LogError ("Leap works");
+		}
   }
   
   Hand GetLeftMostHand(Frame f) {
@@ -25,6 +28,31 @@ public class LeapFly : MonoBehaviour {
     }
     return h;
   }
+
+	void ProcessLook(Hand hand) {
+		float handX = hand.PalmPosition.ToUnityScaled().x;
+		if (Mathf.Abs(handX) > 1.0f) {
+			transform.RotateAround(Vector3.up, handX * 0.03f);
+		}
+	}
+
+	void MoveCharacter(Hand hand) {
+		if (hand.PalmPosition.ToUnityScaled().z > .1f) {
+			transform.position += transform.forward * 0.1f;
+		}
+		
+		if (hand.PalmPosition.ToUnityScaled().z < -.1f) {
+			transform.position -= transform.forward * 0.04f;
+		}
+
+		if (hand.PalmPosition.ToUnityScaled().x > .1f) {
+			transform.position += transform.right * 0.1f;
+		}
+		
+		if (hand.PalmPosition.ToUnityScaled().x < -.1f) {
+			transform.position -= transform.right * 0.04f;
+		}
+	}
   
   Hand GetRightMostHand(Frame f) {
     float largestVal = -float.MaxValue;
@@ -41,35 +69,16 @@ public class LeapFly : MonoBehaviour {
   void FixedUpdate () {
     
     Frame frame = m_leapController.Frame();
-  
-    if (frame.Hands.Count >= 2) {
-      Hand leftHand = GetLeftMostHand(frame);
-      Hand rightHand = GetRightMostHand(frame);
-      
-      // takes the average vector of the forward vector of the hands, used for the
-      // pitch of the plane.
-      Vector3 avgPalmForward = (frame.Hands[0].Direction.ToUnity() + frame.Hands[1].Direction.ToUnity()) * 0.5f;
-      
-      Vector3 handDiff = leftHand.PalmPosition.ToUnityScaled() - rightHand.PalmPosition.ToUnityScaled();
-      
-      Vector3 newRot = transform.parent.localRotation.eulerAngles;
-      newRot.z = -handDiff.y * 20.0f;
-      
-      // adding the rot.z as a way to use banking (rolling) to turn.
-      newRot.y += handDiff.z * 3.0f - newRot.z * 0.03f * transform.parent.GetComponent<Rigidbody>().velocity.magnitude;
-      newRot.x = -(avgPalmForward.y - 0.1f) * 100.0f;
+	Hand leftHand = GetLeftMostHand(frame);
+	Hand rightHand = GetRightMostHand(frame);
 
-      float forceMult = 10.0f;
-      
-      // if closed fist, then stop the plane and slowly go backwards.
-      if (frame.Fingers.Count < 3) {
-        forceMult = -3.0f;
-      }
-      
-      transform.parent.localRotation = Quaternion.Slerp(transform.parent.localRotation, Quaternion.Euler(newRot), 0.1f);
-      transform.parent.GetComponent<Rigidbody>().velocity = transform.parent.forward * forceMult;
-    }
+	if (leftHand != null) {
+			MoveCharacter(leftHand);
+
+	}
 
   }
+
+
   
 }

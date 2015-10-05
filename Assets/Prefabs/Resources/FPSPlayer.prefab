@@ -1072,6 +1072,8 @@ GameObject:
   - 114: {fileID: 11467878}
   - 114: {fileID: 11467880}
   - 95: {fileID: 9576364}
+  - 114: {fileID: 11419172}
+  - 114: {fileID: 11470710}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Player
@@ -1533,6 +1535,22 @@ GameObject:
   - 4: {fileID: 411136}
   m_Layer: 0
   m_Name: char_ethan_LeftHandPinky4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &188858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452658}
+  - 114: {fileID: 11437394}
+  m_Layer: 0
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2297,6 +2315,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 458440}
   m_RootOrder: 0
+--- !u!4 &452658
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 468068}
+  m_RootOrder: 3
 --- !u!4 &453772
 Transform:
   m_ObjectHideFlags: 1
@@ -2696,6 +2726,7 @@ Transform:
   - {fileID: 468012}
   - {fileID: 473052}
   - {fileID: 424234}
+  - {fileID: 452658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &473052
@@ -3171,7 +3202,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3646,7 +3677,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -3716,7 +3746,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -3787,7 +3816,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 8
@@ -3858,7 +3886,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 17
@@ -4157,6 +4184,28 @@ MonoBehaviour:
   aimScaleLimit: 2
   aimZ: 20
   rayCount: 12
+--- !u!114 &11419172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168068}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11437394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11466778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4392,6 +4441,17 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11470710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11488000
 MonoBehaviour:
   m_ObjectHideFlags: 1
