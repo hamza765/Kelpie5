@@ -294,7 +294,7 @@ public class OVRPlayerController : MonoBehaviour
 		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
 
 #if !UNITY_ANDROID || UNITY_EDITOR
-		if (SkipMouseRotation)
+		if (!SkipMouseRotation)
 			euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
 #endif
 
@@ -411,7 +411,7 @@ public class OVRPlayerController : MonoBehaviour
 	/// <param name="skipMouseRotation">Allow mouse rotation.</param>
 	public void GetSkipMouseRotation(ref bool skipMouseRotation)
 	{
-		//skipMouseRotation = SkipMouseRotation;
+		skipMouseRotation = SkipMouseRotation;
 	}
 
 	/// <summary>
@@ -420,7 +420,7 @@ public class OVRPlayerController : MonoBehaviour
 	/// <param name="skipMouseRotation">If set to <c>true</c> allow mouse rotation.</param>
 	public void SetSkipMouseRotation(bool skipMouseRotation)
 	{
-		//SkipMouseRotation = skipMouseRotation;
+		SkipMouseRotation = skipMouseRotation;
 	}
 
 	/// <summary>

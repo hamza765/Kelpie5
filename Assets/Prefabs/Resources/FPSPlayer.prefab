@@ -1072,8 +1072,8 @@ GameObject:
   - 114: {fileID: 11467878}
   - 114: {fileID: 11467880}
   - 95: {fileID: 9576364}
-  - 114: {fileID: 11419172}
-  - 114: {fileID: 11470710}
+  - 82: {fileID: 8282458}
+  - 114: {fileID: 11416348}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Player
@@ -1535,22 +1535,6 @@ GameObject:
   - 4: {fileID: 411136}
   m_Layer: 0
   m_Name: char_ethan_LeftHandPinky4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &188858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 452658}
-  - 114: {fileID: 11437394}
-  m_Layer: 0
-  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2315,18 +2299,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 458440}
   m_RootOrder: 0
---- !u!4 &452658
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 468068}
-  m_RootOrder: 3
 --- !u!4 &453772
 Transform:
   m_ObjectHideFlags: 1
@@ -2726,7 +2698,6 @@ Transform:
   - {fileID: 468012}
   - {fileID: 473052}
   - {fileID: 424234}
-  - {fileID: 452658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &473052
@@ -3202,7 +3173,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3940,6 +3911,76 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8282458
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168068}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24336460, guid: a9f695d13010d374eb56168dafba14bc,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!92 &9267874
 Behaviour:
   m_ObjectHideFlags: 1
@@ -4157,6 +4198,17 @@ MonoBehaviour:
   aimScaleLimit: 2
   aimZ: 90
   rayCount: 1
+--- !u!114 &11416348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9709cb5bae954c4e93396f7328a8d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11418174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4184,28 +4236,6 @@ MonoBehaviour:
   aimScaleLimit: 2
   aimZ: 20
   rayCount: 12
---- !u!114 &11419172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168068}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11437394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11466778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4254,6 +4284,7 @@ MonoBehaviour:
   bloodSplatPrefab: {fileID: 100000, guid: 80cd87e5e66b84b35b29f75198eeda8b, type: 2}
   shooting: 0
   ammoText: {fileID: 0}
+  AmmoPanel: {fileID: 0}
   target: {fileID: 0}
   WeaponStats: {fileID: 0}
 --- !u!114 &11467876
@@ -4309,8 +4340,8 @@ MonoBehaviour:
       m_PostInfinity: 2
   useHeadBob: 0
   _headBob:
-    HorizontalBobRange: .100000001
-    VerticalBobRange: .100000001
+    HorizontalBobRange: .300000012
+    VerticalBobRange: .300000012
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -4346,6 +4377,7 @@ MonoBehaviour:
     BobDuration: .200000003
     BobAmount: .5
   _stepInterval: 5
+  breathingFastSound: {fileID: 8300000, guid: 13f62556fa2545b49add2d894937cdf7, type: 3}
   _footstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
@@ -4378,7 +4410,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: 
   pickedUpAmmo: 0
-  weapons: []
+  weaponMains: []
+  weaponParts: []
+  firstPersonChar: {fileID: 168066}
   muzzleFlashToggle: 0
   currentWeapon: {fileID: 0}
   _jumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
@@ -4409,13 +4443,16 @@ MonoBehaviour:
   animMainCam: {fileID: 9522602}
   animEthan: {fileID: 9592996}
   animHitBoxes: {fileID: 9578350}
-  playerShooting: {fileID: 0}
+  WeaponArray:
+  - {fileID: 168028}
+  - {fileID: 134726}
   muzzleLightFlash: {fileID: 0}
   muzzleLightFlashGO: []
   alive: 1
-  cameraMotionBlur: {fileID: 0}
-  depthOfField: {fileID: 0}
-  qSwapping: 0
+  cameraMotionBlur: {fileID: 11489912}
+  depthOfField: {fileID: 11466778}
+  currentWeaponIndex: 0
+  updateWeaponIndex: 0
 --- !u!114 &11467880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4431,27 +4468,16 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 0}
-  synchronization: 3
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 11467878}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!114 &11470710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6989fd38edc76247aeb80dbd59cf726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11488000
 MonoBehaviour:
   m_ObjectHideFlags: 1

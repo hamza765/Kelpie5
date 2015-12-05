@@ -457,9 +457,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &211844185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -978,9 +978,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &303584359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1188,7 +1188,7 @@ Transform:
   - {fileID: 211844183}
   - {fileID: 592327866}
   m_Father: {fileID: 1650406448}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &327316973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,9 +3002,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &592327868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3060,9 +3060,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &592939405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3166,7 +3166,7 @@ Transform:
   - {fileID: 1831855396}
   - {fileID: 1904034632}
   m_Father: {fileID: 1650406448}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &632226188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3401,9 +3401,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &665223916
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3743,9 +3743,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &746827702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5682,9 +5682,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &942375606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6046,9 +6046,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1055918037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7587,9 +7587,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1143593701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7997,9 +7997,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1308738436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8212,7 +8212,7 @@ Transform:
   - {fileID: 303584357}
   - {fileID: 1143593699}
   m_Father: {fileID: 1650406448}
-  m_RootOrder: 5
+  m_RootOrder: 0
 --- !u!114 &1398782412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9687,9 +9687,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1446853052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15051,12 +15051,12 @@ Transform:
   m_LocalPosition: {x: -4.1190443, y: 1.93521142, z: -6.83640623}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
+  - {fileID: 1398782411}
   - {fileID: 327316972}
   - {fileID: 632226187}
-  - {fileID: 1926983607}
   - {fileID: 1542558121}
   - {fileID: 1293181094}
-  - {fileID: 1398782411}
+  - {fileID: 1926983607}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1650406449
@@ -17198,9 +17198,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1831855398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17256,9 +17256,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1904034634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17300,7 +17300,7 @@ Transform:
   m_LocalScale: {x: .0250000004, y: .129999995, z: .0250000004}
   m_Children: []
   m_Father: {fileID: 1650406448}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!54 &1926983608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17314,9 +17314,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1926983609
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17456,9 +17456,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2021808992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17514,9 +17514,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2024752270
 BoxCollider:
   m_ObjectHideFlags: 0

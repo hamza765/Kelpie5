@@ -29,28 +29,29 @@ public class PlayerShooting: MonoBehaviour {
 	//GameObject[] impacts;
 	NetworkManager NM;
 	int currentImpact = 0;
-	int maxImpacts = 20;
+	int maxImpacts = 30;
 	public bool shooting = false;
 	float damage = 16f;
 	bool reloading = false;
 	public Text ammoText;
+    public GameObject AmmoPanel;
 	public Transform target;
 	bool enumDeclared = false;
 	int bulletsFired = 0;
     public Weapon WeaponStats;
- 
-	// Use this for initialization
-	void Start() {
+    private float hitMakerFadeDelay = 0.35f;
+    // Use this for initialization
+    void Start() {
 		
 		guiMan = GameObject.Find("NetworkManager").GetComponent < GUIManager > ();
 		NM = GameObject.Find("NetworkManager").GetComponent < NetworkManager > ();
-		
         //Check for children weapon scripts and use what is equiped to load that weapon's unique stats
         WeaponStats = GetComponentInChildren<Weapon>();
 		//To assign the each players own muzzle flash toggle and not someone elses. 
         AssignMuzzleLightSource();
-
-		ammoText = GameObject.FindGameObjectWithTag("Ammo").GetComponent < Text > ();
+        AmmoPanel = GameObject.FindGameObjectWithTag("AmmoPanel");
+        AmmoPanel.GetComponent<Image>().enabled = true;
+        ammoText = GameObject.FindGameObjectWithTag("Ammo").GetComponent < Text > ();
         anim = GetComponentInChildren<Animator>();
 		timeStamp = 0;
 		//Intilize Current Ammo then call it every time the ammo changes when shooting to update
@@ -102,8 +103,9 @@ public class PlayerShooting: MonoBehaviour {
 				anim.SetBool("Fire", false);
 				muzzleLightFlash.enabled = false;
 			}
-
-		}
+            if (GameObject.Find("HitMarker").GetComponent<RawImage>().color.a > 0.0f)
+                GameObject.Find("HitMarker").GetComponent<RawImage>().CrossFadeAlpha(0.0f, hitMakerFadeDelay,false);
+        }
 
         if (Input.GetKeyDown(KeyCode.R) && !Input.GetButton("Fire1") && WeaponStats.clipSize < 30 && WeaponStats.clipAmount != 0 && !reloading)
         {
@@ -114,7 +116,7 @@ public class PlayerShooting: MonoBehaviour {
 			NM.player.GetComponent < PhotonView > ().RPC("ReloadingSound", PhotonTargets.All);
 			StartCoroutine(Reload());
 			//Write Kills and Deaths to File On Death 
-			System.IO.File.AppendAllText (@"C:\Users\Public\PlayerSootingStats.txt", "\n" + "Bullets Fired: " + (bulletsFired).ToString() + " On Reload");
+			//System.IO.File.AppendAllText (@"C:\Users\Public\PlayerSootingStats.txt", "\n" + "Bullets Fired: " + (bulletsFired).ToString() + " On Reload");
 		}
         if (WeaponStats.clipSize <= 0 && Input.GetButtonDown("Fire1"))
         {
@@ -190,7 +192,12 @@ public class PlayerShooting: MonoBehaviour {
                         flyByTrue = false;
                         //Play hitmarker sound
                         gameObject.GetComponent<AudioSource>().Play();
-
+                        //Show Hit Marker
+                        Color opaque = GameObject.Find("HitMarker").GetComponent<RawImage>().color;
+                        opaque.a = 1.0f;
+                        GameObject.Find("HitMarker").GetComponent<RawImage>().color = opaque;
+                        //We still have to use CrossFade because even though we set its alpha to 1, for some reason it won't show unless we crossfade back, might be a unity bug. 
+                        GameObject.Find("HitMarker").GetComponent<RawImage>().CrossFadeAlpha(1.0f, 0.0f, true);
                         //If we hit the head colliderr change the damage
                         if (hits[i].collider.name == "Head")
                         {
@@ -288,12 +295,17 @@ public class PlayerShooting: MonoBehaviour {
 			return new WaitForSeconds(2.0f);
         WeaponStats.clipSize = WeaponStats.clipSizeMax;
         WeaponStats.clipAmount--;
-        ammoText.text = WeaponStats.clipAmount.ToString() + "/" + WeaponStats.clipSize.ToString();
-		reloading = false;
+        ammoText.text = AmmoToString();
+        reloading = false;
 		anim.SetBool("Reloading", false);
 
 	}
-	
+
+    public string AmmoToString() {
+
+        return WeaponStats.clipSize.ToString() + " | " + WeaponStats.clipAmount.ToString();
+    }
+
 	IEnumerator EmptyGun() {
 		
 		yield
@@ -341,9 +353,9 @@ public class PlayerShooting: MonoBehaviour {
 
 	public void UpdateAmmoText(){
 
-        if (WeaponStats != null) { 
-            
-            ammoText.text = WeaponStats.clipAmount.ToString() + "/" + WeaponStats.clipSize.ToString();
+        if (ammoText != null) {
+
+            ammoText.text = AmmoToString();
         }
 	}
 }

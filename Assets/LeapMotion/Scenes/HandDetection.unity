@@ -179,7 +179,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400000, guid: c9f2277f2b4414ff9abf05e783890171,
     type: 2}
   m_PrefabInternal: {fileID: 1461732834}
-  m_GameObject: {fileID: 1558864834}
+  m_GameObject: {fileID: 1505094889}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c4e0350c46ae405b8db39262c18b8f5, type: 3}
@@ -329,16 +329,16 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 11424590, guid: c9f2277f2b4414ff9abf05e783890171, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c9f2277f2b4414ff9abf05e783890171, type: 2}
-  m_RootGameObject: {fileID: 1558864834}
+  m_RootGameObject: {fileID: 1505094889}
   m_IsPrefabParent: 0
---- !u!1 &1558864834
+--- !u!1 &1505094889
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: c9f2277f2b4414ff9abf05e783890171, type: 2}
   m_PrefabInternal: {fileID: 1461732834}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1558864835}
+  - 4: {fileID: 1505094890}
   - 114: {fileID: 805507377}
   m_Layer: 0
   m_Name: HandController
@@ -347,12 +347,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1558864835
+--- !u!4 &1505094890
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: c9f2277f2b4414ff9abf05e783890171, type: 2}
   m_PrefabInternal: {fileID: 1461732834}
-  m_GameObject: {fileID: 1558864834}
+  m_GameObject: {fileID: 1505094889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 6}
   m_LocalScale: {x: 20, y: 20, z: 20}

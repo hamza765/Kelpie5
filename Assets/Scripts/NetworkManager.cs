@@ -14,6 +14,7 @@ public class NetworkManager : MonoBehaviour {
 	[SerializeField] GameObject mainMenu;
 	[SerializeField] GameObject ammoText;
 	[SerializeField] GameObject versionText;
+    [SerializeField] GameObject crosshair;
 	public GameObject optionsMenu;
 	public GameObject serverOptionsMenu;
 
@@ -37,7 +38,7 @@ public class NetworkManager : MonoBehaviour {
 	bool paused = false;
 	public bool joinedRoom = false;
 	public bool GameOver = false;
-
+    public GameObject HitMarker;
 	ExitGames.Client.Photon.Hashtable setPlayerKills = new ExitGames.Client.Photon.Hashtable() {{"K", 0}};
 	ExitGames.Client.Photon.Hashtable setPlayerDeaths = new ExitGames.Client.Photon.Hashtable() {{"D", 0}};
 	ExitGames.Client.Photon.Hashtable setPlayerPing = new ExitGames.Client.Photon.Hashtable() {{"P", 0}};
@@ -48,8 +49,8 @@ public class NetworkManager : MonoBehaviour {
 	
 		photonView = GetComponent<PhotonView> ();//Initillze PhotonView
 		messages = new Queue<string> (messageCount);//Specify Size for garbage Collection 
-		PhotonNetwork.sendRate = 30;
-		PhotonNetwork.sendRateOnSerialize = 15;
+		PhotonNetwork.sendRate = 40;
+		PhotonNetwork.sendRateOnSerialize = 20;
 		PhotonNetwork.logLevel = PhotonLogLevel.Full;//So we see everything in output
 		//connect to Server with setup info and sets game version
 		PhotonNetwork.ConnectUsingSettings ("0.4");
@@ -160,9 +161,17 @@ public class NetworkManager : MonoBehaviour {
 		StartSpawnProcess (0f);
 		AddMessage ("Player " + PhotonNetwork.player.name + " has joined.");
 		GameObject.FindGameObjectWithTag ("LobbyCam").GetComponent<AudioListener> ().enabled = false;
+        if (PhotonNetwork.isMasterClient) {
+            //Only master client spawns and controls drone, otherwise we'd get lots of drones every time someone joins
+            SpawnDrone();
+        }
 
 	}
 
+    public void SpawnDrone() {
+
+        PhotonNetwork.Instantiate("PA_Drone", new Vector3(-23f, 2.747f, 29f), new Quaternion(0f,97f,0f, 0f), 0);
+    }
 	public void StartSpawnProcess (float respawnTime){
 		//Show Lobby cam on death vs blank screen
 		sceneCamera.enabled = true; 
@@ -223,8 +232,12 @@ public class NetworkManager : MonoBehaviour {
 
 		//Display Win Screen
 		WinPrompt.SetActive(true);
-		WinPromptText.text = "Score Limit Reached! \n" + playerName + " Won";
-		player.GetComponentInChildren<PlayerShooting>().enabled = false;
+        crosshair.SetActive(false);
+        WinPromptText.text = "Match Over \n" + playerName + " Won";
+        if (player.GetComponentInChildren<PlayerShooting>() != null) { 
+
+		    player.GetComponentInChildren<PlayerShooting>().enabled = false;
+        }
 		GameOver = true;
 	}
 
@@ -251,8 +264,10 @@ public class NetworkManager : MonoBehaviour {
 			//Time.timeScale = 0;//To freeze time
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-			//Disable Shooting and movement
-			player.GetComponent<UnitySampleAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+            crosshair.SetActive(false);
+            HitMarker.SetActive(false);
+            //Disable Shooting and movement
+            player.GetComponent<UnitySampleAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
 			player.GetComponentInChildren<PlayerShooting>().enabled = false;
 			pausePanel.SetActive(true);
 			//mainCanvas.enabled = false;
@@ -263,8 +278,10 @@ public class NetworkManager : MonoBehaviour {
 			//Time.timeScale = 1;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-			//Re-Enable
-			player.GetComponent<UnitySampleAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
+            crosshair.SetActive(true);
+            HitMarker.SetActive(true);
+            //Re-Enable
+            player.GetComponent<UnitySampleAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
 			//Basically we don't want shooting when game is over, so even if they pause it won't renable the shooting script.
 			if(!GameOver)
 				player.GetComponentInChildren<PlayerShooting>().enabled = true;

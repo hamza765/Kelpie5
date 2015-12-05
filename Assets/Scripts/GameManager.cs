@@ -2,6 +2,7 @@ using ExitGames.Client.Photon;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,8 +17,19 @@ public class GameManager : MonoBehaviour {
 	float xAx;
 	float yAx;
 	public int killLimit;
+    public int timeLimit;
 	bool doOnce = false;
+    public bool killToWin;
+    public bool timeToWin;
+    public GameObject crosshair;
+    public GameObject ColorPickerPanel;
+    public Image ColorPickerImage;
+    public Image ColorPickerCursor;
+
 	[SerializeField] InputField killLimitInput;
+    [SerializeField] Toggle toggleKillLimit;
+    [SerializeField] Toggle toggleTimeLimit;
+    [SerializeField] InputField timeLimitInput;
 	// Use this for initialization
 	void Start () {
 
@@ -29,8 +41,8 @@ public class GameManager : MonoBehaviour {
 			PlayerPrefs.SetInt("smooth", (false ? 1 : 0));
             PlayerPrefs.Save();
 		}
-
-		NM = GameObject.FindGameObjectWithTag ("NetworkManager").GetComponent<NetworkManager> ();
+        ColorPickerPanel.SetActive(false);
+        NM = GameObject.FindGameObjectWithTag ("NetworkManager").GetComponent<NetworkManager> ();
         //Load Saved Settings when game is loaded, setting is on if not 0 (aka equal to 1)
 		yAxis_Text.text = PlayerPrefs.GetFloat("yAxis").ToString();
 		xAxis_Text.text = PlayerPrefs.GetFloat("xAxis").ToString();
@@ -40,18 +52,55 @@ public class GameManager : MonoBehaviour {
         CMB.isOn = (PlayerPrefs.GetInt("CMB") != 0);
 		optionsAnim = GameObject.FindGameObjectWithTag ("OptionsPanel").GetComponent<Animator> ();
 		killLimit = 10;
+        timeLimit = 10;
+        killToWin = toggleKillLimit.isOn;
+        timeToWin = toggleTimeLimit.isOn;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        
+        //Once there is a master client update to the network the game configuration just once
 		if (PhotonNetwork.isMasterClient && !doOnce){
 			doOnce = true;
+
 			ExitGames.Client.Photon.Hashtable setKillLimit = new Hashtable(); 
 			setKillLimit["KL"] = killLimit;
+
+            ExitGames.Client.Photon.Hashtable toggleKillLimit = new Hashtable();
+            setKillLimit["TKL"] = killToWin ? 1 : 0;
+
+            ExitGames.Client.Photon.Hashtable setTimeLimit = new Hashtable();
+            setKillLimit["TL"] = timeLimit;
+
+            ExitGames.Client.Photon.Hashtable toggleTimeLimit = new Hashtable();
+            setKillLimit["TTL"] = timeToWin ? 1 : 0;
 			PhotonNetwork.room.SetCustomProperties(setKillLimit);
 		}
+
+        if (ColorPickerPanel.GetActive() == true && Input.GetMouseButton(0)) {
+
+            Vector2 localPoint;
+            //Get the bounds of the image rect
+            Rect r = ColorPickerImage.rectTransform.rect;
+            //Set texture variable
+            Texture2D tex = ColorPickerImage.sprite.texture;
+            //Convert the screen point to local point of Image Rect and out to localPoint vector2D
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(ColorPickerImage.rectTransform, Input.mousePosition, Camera.main, out localPoint);
+            //Now shift points from bottom left localPoint to 0 all the way to the images max width and height 
+            int px = Mathf.Clamp(0, (int)(((localPoint.x - r.x) * tex.width) / r.width), tex.width);
+            int py = Mathf.Clamp(0, (int)(((localPoint.y - r.y) * tex.height) / r.height), tex.height);
+            
+            Color newCrossHairColor = tex.GetPixel(px, py);
+
+            if (px > 0 && px < tex.width && py > 0 && py < tex.height) {
+                ColorPickerCursor.transform.localPosition = localPoint;
+                crosshair.GetComponent<RawImage>().color = newCrossHairColor;
+            }
+          
+
+        }
 
 	}
 
@@ -66,6 +115,21 @@ public class GameManager : MonoBehaviour {
 			killLimit = 10;
 		}
 	}
+
+    public void SetTimeLimit()
+    {
+
+        bool result = int.TryParse(timeLimitInput.text, out timeLimit);
+        if (result)
+        {
+            Debug.Log("KillLimit Accepted: " + timeLimit);
+        }
+        else
+        {
+            Debug.Log("Error timeLimit Can't be parsed");
+            timeLimit = 10;
+        }
+    }
 
 	public void SetMouseX(float xAxis){
 		
@@ -90,11 +154,16 @@ public class GameManager : MonoBehaviour {
 	public void ShowOptions(){
 		NM.optionsMenu.SetActive (true);
 		optionsAnim.SetBool ("Show", true);
-	}
+        //Show Crosshair for color changing
+        crosshair.SetActive(true);
+        crosshair.GetComponent<RawImage>().enabled = true;
+    }
 
 	public void HideOptions(){
 
-		optionsAnim.SetBool ("Show", false);
+        //Hide crosshair
+        crosshair.GetComponent<RawImage>().enabled = false;
+        optionsAnim.SetBool ("Show", false);
 		NM.optionsMenu.SetActive (false);
         PlayerPrefs.Save();
 	}
@@ -130,6 +199,58 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("CMB", (on ? 1 : 0));
         PlayerPrefs.Save();
         Debug.Log("CMB" + PlayerPrefs.GetInt("CMB"));
+    }
+
+    public void SetKillToWin(bool optionChoice)
+    {
+
+        killToWin = optionChoice;
+        timeToWin = !optionChoice;
+    }
+
+
+    public void SetTimeToWin(bool optionChoice)
+    {
+
+        timeToWin = optionChoice;
+        killToWin = !optionChoice;
+    }
+
+    public void ColorPicker(int color)
+    {
+
+        if(crosshair != null) { 
+            switch (color) {
+
+                case 0:
+                    crosshair.GetComponent<RawImage>().color = Color.white;
+                    break;
+                case 1:
+                    crosshair.GetComponent<RawImage>().color = Color.red;
+                    break;
+                case 2:
+                    crosshair.GetComponent<RawImage>().color = Color.blue;
+                    break;
+                case 3:
+                    crosshair.GetComponent<RawImage>().color = Color.green;
+                    break;
+                case 4:
+                    crosshair.GetComponent<RawImage>().color = Color.black;
+                    break;
+                default:
+                    crosshair.GetComponent<RawImage>().color = Color.white;
+                    break;
+
+            }
+        }
+    }
+
+    public void OpenColorPicker() {
+        ColorPickerPanel.SetActive(true);
+    }
+
+    public void CloseColorPicker() {
+        ColorPickerPanel.SetActive(false);
     }
 
 	public void QuitGame(){

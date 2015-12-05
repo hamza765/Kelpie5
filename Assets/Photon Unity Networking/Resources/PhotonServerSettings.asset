@@ -15,11 +15,9 @@ MonoBehaviour:
   Protocol: 0
   ServerAddress: 
   ServerPort: 5055
-  AppID: 9966d279-b483-42ec-87c1-ed991f4a5364
   PreferredRegion: 1
-  EnabledRegions: -1
-  JoinLobby: 0
-  EnableLobbyStatistics: 0
+  AppID: 9966d279-b483-42ec-87c1-ed991f4a5364
+  PingCloudServersOnAwake: 0
   RpcList:
   - AddMessage_RPC
   - Chat
@@ -42,9 +40,4 @@ MonoBehaviour:
   - RoundTimer
   - DisplayWinPrompt_RPC
   - ToggleMuzzleFlash
-  - ColorRpc
-  - DoJump
-  - Marco
-  - Polo
-  - TaggedPlayer
   DisableAutoOpenWizard: 0

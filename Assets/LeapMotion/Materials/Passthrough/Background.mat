@@ -97,6 +97,10 @@ Material:
         second: .0199999996
       data:
         first:
+          name: _ColorSpaceGamma
+        second: 1
+      data:
+        first:
           name: _ZWrite
         second: 1
       data:
@@ -131,6 +135,46 @@ Material:
         first:
           name: _EmissionScaleUI
         second: 0
+      data:
+        first:
+          name: _hView
+        second: 60
+      data:
+        first:
+          name: _vView
+        second: 60
+      data:
+        first:
+          name: _useTimeWarp
+        second: 1
+      data:
+        first:
+          name: _hHalfView
+        second: 1.73000002
+      data:
+        first:
+          name: _vHalfView
+        second: 1.55999994
+      data:
+        first:
+          name: _dbg_XWarping
+        second: 0
+      data:
+        first:
+          name: _dbg_YWarping
+        second: 0
+      data:
+        first:
+          name: _dbg_Scale
+        second: 1
+      data:
+        first:
+          name: _uneTimeWarp
+        second: 1
+      data:
+        first:
+          name: _dbgTest
+        second: 4
     m_Colors:
       data:
         first:

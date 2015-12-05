@@ -154,13 +154,14 @@ GameObject:
   - 82: {fileID: 8216364}
   - 135: {fileID: 13583864}
   - 114: {fileID: 11473888}
+  - 114: {fileID: 11472444}
   m_Layer: 0
   m_Name: PA_Drone 1
   m_TagString: FlyByRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &406946
 Transform:
   m_ObjectHideFlags: 1
@@ -540,6 +541,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -682,6 +684,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RPM: 1000
+--- !u!114 &11472444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbf4cd1c02db674d833a0c620728761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11473888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -702,7 +715,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 447426}
+  - {fileID: 11472444}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
